@@ -19,4 +19,25 @@ public interface StatusMapper {
      * @param status
      */
     void insertStatus(Status status);
+<<<<<<< HEAD
+=======
+
+    /**
+     * 改变订单的状态
+     * @param order_id,info
+     */
+    void changeStatusInfo(String info,int order_id);
+
+    /**
+     * 获取该订单的状态
+     * @param order_id
+     * @return
+     */
+    String getStatusInfo(int order_id);
+>>>>>>> upstream/master
+
+    /**
+     * 修改订单状态
+     */
+    void updateStatus(Status status);
 }

@@ -68,7 +68,11 @@ CREATE TABLE `comment` (
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+<<<<<<< HEAD
   `titile` varchar(50) NOT NULL,
+=======
+  `title` varchar(50) NOT NULL,
+>>>>>>> upstream/master
   `user` varchar(20) NOT NULL,
   `delivery` varchar(20) DEFAULT NULL,
   `begin` varchar(60) NOT NULL,
@@ -106,7 +110,11 @@ CREATE TABLE `user` (
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
   `name` varchar(10) NOT NULL,
+<<<<<<< HEAD
   `auth` int(11) DEFAULT NULL,
+=======
+  `auth` int(11) DEFAULT 0,
+>>>>>>> upstream/master
   PRIMARY KEY (`username`),
   KEY `user_auth_to_auth_id` (`auth`),
   CONSTRAINT `user_auth_to_auth_id` FOREIGN KEY (`auth`) REFERENCES `auth_info` (`id`)

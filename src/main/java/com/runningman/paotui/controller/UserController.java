@@ -1,6 +1,11 @@
 package com.runningman.paotui.controller;
 
 
+<<<<<<< HEAD
+=======
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+>>>>>>> upstream/master
 import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import com.runningman.paotui.dto.Result;
 import com.runningman.paotui.pojo.User;
@@ -13,6 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
+<<<<<<< HEAD
+=======
+import java.util.HashMap;
+import java.util.Map;
+>>>>>>> upstream/master
 
 @RestController
 @RequestMapping("/user")
@@ -30,7 +40,11 @@ public class UserController {
     public Result register(User user){
         try {
             userService.addUser(user);
+<<<<<<< HEAD
             return new Result().success("ok",0,"注册成功");
+=======
+            return new Result().success("注册成功",0,"ok");
+>>>>>>> upstream/master
         }catch (Exception e){
             //捕获主键重复异常，即电话已被注册
             return new Result().fail("error","注册失败,电话被占用",0);
@@ -49,4 +63,42 @@ public class UserController {
         }
         return new Result().fail("nopass","登录失败",0);
     }
+<<<<<<< HEAD
+=======
+
+    @RequestMapping(value = "/getUserInfo",produces = "application/json;charset=utf-8")
+    public String checkUser(HttpSession session){
+        User user=(User)session.getAttribute("user");
+        Map<String,Object> result=new HashMap<>();
+        ObjectMapper mapper=new ObjectMapper();
+        String json= null;
+        if(user!=null){
+            User user1= this.userService.getUser(user.getUsername());
+            Map<String,Object> userList=new HashMap<>();
+            userList.put("username", user1.getUsername());
+            userList.put("name", user1.getName());
+
+            result.put("code",0 );
+            result.put("msg","已经登录" );
+            result.put("data", userList);
+            try {
+                json = mapper.writeValueAsString(result);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+        else{
+            result.put("code",1006 );
+            result.put("msg","未登录" );
+            result.put("data", null);
+            try {
+                json = mapper.writeValueAsString(result);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            return json;
+        }
+    }
+>>>>>>> upstream/master
 }

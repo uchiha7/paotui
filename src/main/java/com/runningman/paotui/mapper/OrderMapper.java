@@ -1,12 +1,20 @@
 package com.runningman.paotui.mapper;
 
+<<<<<<< HEAD
 import com.runningman.paotui.pojo.Order;
 import com.runningman.paotui.pojo.OrderTitle;
 import com.runningman.paotui.pojo.OrdersUser;
+=======
+import com.runningman.paotui.pojo.*;
+>>>>>>> upstream/master
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
+<<<<<<< HEAD
+=======
+import java.util.Date;
+>>>>>>> upstream/master
 import java.util.List;
 
 /**
@@ -37,7 +45,11 @@ public interface OrderMapper {
      * @param limit
      * @return
      */
+<<<<<<< HEAD
     List<Order> getAllOrder(int page,int limit);
+=======
+    List<OrderTitle> getAllOrder(int page,int limit);
+>>>>>>> upstream/master
 
     /**
      * 显示订单数
@@ -59,4 +71,34 @@ public interface OrderMapper {
      * @return
      */
     int getUserOrderCount(String user);
+<<<<<<< HEAD
+=======
+
+    /**
+     * 接单之前查看订单的详细内容
+     * @param id
+     * @return
+     */
+    OrderInfo getOrderInfo(int id);
+
+    /**
+     * 设置订单的配送员
+     * @param id
+     */
+    void setDelivery(int id,String delivery);
+
+    /**
+     * 获取订单截止时间
+     * @param id
+     * @return
+     */
+    Date getOrderEndTime(int id);
+
+    /**
+     * 获取跑腿员接了的单
+     * @param username
+     * @return
+     */
+    List<OrderStatus> getOrderStatus(@Param("username") String username);
+>>>>>>> upstream/master
 }

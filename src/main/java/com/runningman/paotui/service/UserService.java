@@ -9,4 +9,9 @@ public interface UserService {
     void addUser(User user);
 
     boolean checkUser(User user);
+<<<<<<< HEAD
+=======
+
+    int getUserAuth(String username);
+>>>>>>> upstream/master
 }

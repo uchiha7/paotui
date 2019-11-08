@@ -1097,7 +1097,11 @@ textarea {
   line-height: inherit;
 }
 a {
+<<<<<<< HEAD
   color: #337ab7;
+=======
+  color: whitesmoke;
+>>>>>>> upstream/master
   text-decoration: none;
 }
 a:hover,
@@ -4804,6 +4808,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
+<<<<<<< HEAD
 .pager {
   padding-left: 0;
   margin: 20px 0;
@@ -4842,6 +4847,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   cursor: not-allowed;
   background-color: #fff;
 }
+=======
+
+>>>>>>> upstream/master
 .label {
   display: inline;
   padding: .2em .6em .3em;

@@ -1,2 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 /.idea/
+<<<<<<< HEAD
+=======
+/paotui.iml
+/target/
+>>>>>>> upstream/master

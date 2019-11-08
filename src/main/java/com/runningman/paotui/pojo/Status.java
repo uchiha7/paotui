@@ -1,9 +1,13 @@
 package com.runningman.paotui.pojo;
 
+<<<<<<< HEAD
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+=======
+import lombok.*;
+>>>>>>> upstream/master
 import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 
 import java.util.Date;
@@ -16,6 +20,10 @@ import java.util.Date;
  */
 @Setter
 @Getter
+<<<<<<< HEAD
+=======
+@ToString
+>>>>>>> upstream/master
 @NoArgsConstructor
 @AllArgsConstructor
 public class Status {
@@ -23,4 +31,36 @@ public class Status {
     private int order_id;
     private String info;
     private Date time;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
 }

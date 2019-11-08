@@ -36,4 +36,12 @@ public class UserServiceImpl implements UserService {
 
 
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public int getUserAuth(String username) {
+        return userMapper.getUserAuth(username);
+    }
+>>>>>>> upstream/master
 }
