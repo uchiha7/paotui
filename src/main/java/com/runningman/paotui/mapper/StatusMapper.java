@@ -38,6 +38,8 @@ public interface StatusMapper {
 
     /**
      * 修改订单状态
+     * @param status
+     * @return
      */
     void updateStatus(Status status);
 }
