@@ -1,26 +1,22 @@
 package com.runningman.paotui.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.runningman.paotui.dto.Result;
 <<<<<<< HEAD
 import com.runningman.paotui.pojo.Order;
 import com.runningman.paotui.pojo.User;
-import com.runningman.paotui.service.OrderService;
+import com.runningman.paotui.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 =======
 import com.runningman.paotui.pojo.*;
 import com.runningman.paotui.service.OrderService;
-import com.runningman.paotui.service.StatusService;
-import com.runningman.paotui.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.*;
 >>>>>>> upstream/master
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 <<<<<<< HEAD
@@ -29,7 +25,9 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 >>>>>>> upstream/master
 
 /**
@@ -85,10 +83,11 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/getUserOrders" ,produces = "application/json;charset=utf-8")
-    public String getUserOrders(HttpSession session, int page, int limit){
-        User user = (User)session.getAttribute("user");
-        String json = orderService.getUserOrders(user.getUsername(),page,limit);
+    public String getUserOrders(HttpSession session, int page, int limit) {
+        User user = (User) session.getAttribute("user");
+        String json = orderService.getUserOrders(user.getUsername(), page, limit);
         return json;
+    }
 =======
     @RequestMapping(value = "/getAllOrder",method = RequestMethod.GET,produces = "application/json;charset=utf-8")
     public Result getAllOrder(int page,int limit){
@@ -150,11 +149,19 @@ public class OrderController {
 
     @RequestMapping(value = "/getStatus",method = RequestMethod.GET)
     public Result getStatus(HttpSession session){
-        User user = (User) session.getAttribute("user");
-        if(user==null){
-            return new Result().fail("notpass","你不是该接单员",0);
+            User user = (User) session.getAttribute("user");
+            if (user == null) {
+                return new Result().fail("notpass", "你不是该接单员", 0);
+            }
+            return new Result().success("订单状态", 0, orderService.getOrderStatus(user.getUsername()));
         }
-        return new Result().success("订单状态",0,orderService.getOrderStatus(user.getUsername()));
->>>>>>> upstream/master
-    }
+
+        @RequestMapping(path = "/search",method = RequestMethod.GET)
+            public Map<String,Object> findAllBytitle(@RequestParam Integer page, @RequestParam Integer limit, @RequestParam String title){
+                PageInfo pageInfo = orderService.findAllBytitle(page, limit,title);
+
+                Result result = new Result();
+                return result.success("其它数据",0,pageInfo);
+            }
+
 }

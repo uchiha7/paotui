@@ -19,7 +19,7 @@
     </select>
 >>>>>>> upstream/master
 
-    <update id="updateStatus" parameterType="status">
+    <update id="updateStatus" parameterType="status" >
         update status set
         info = #{info},
         time = #{time}

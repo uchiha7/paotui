@@ -64,5 +64,15 @@
         from `order` o join `status` s on o.id = s.order_id
         where o.delivery = #{username} and s.info != "已完成"
     </select>
+
+    <select id="selectByTitle" parameterType="String" resultType="OrderTitle">
+        select o.id,u.name,u.username,o.title,o.reward,o.begin,o.end
+        from  `order`
+        where 1=1
+        <if test="title!=null">
+            and title like '%${title}%'
+        </if>
+    </select>
+
 >>>>>>> upstream/master
 </mapper>

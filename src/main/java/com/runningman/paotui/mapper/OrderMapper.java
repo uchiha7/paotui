@@ -101,4 +101,7 @@ public interface OrderMapper {
      */
     List<OrderStatus> getOrderStatus(@Param("username") String username);
 >>>>>>> upstream/master
+
+    List<OrderTitle> selectByTitle(String title);
+
 }

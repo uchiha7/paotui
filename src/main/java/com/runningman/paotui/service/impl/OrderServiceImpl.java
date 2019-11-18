@@ -1,6 +1,8 @@
 package com.runningman.paotui.service.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.runningman.paotui.mapper.OrderMapper;
 import com.runningman.paotui.mapper.StatusMapper;
 <<<<<<< HEAD
@@ -45,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
 <<<<<<< HEAD
     @Override
     public boolean makeOrder(String user,Order order) {
-        try{
+        try {
             order.setUser(user);
             orderMapper.insertOrder(order);
             Status status = new Status();
@@ -55,57 +57,57 @@ public class OrderServiceImpl implements OrderService {
             status.setTime(date);
             statusMapper.insertStatus(status);
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
+    }
 =======
 
-    @Transactional(rollbackFor={RuntimeException.class, Exception.class})
-    @Override
-    public boolean makeOrder(String user,Order order) {
-        order.setUser(user);
-        orderMapper.insertOrder(order);
-        Status status = new Status();
-        status.setOrder_id(order.getId());
-        status.setInfo("已发布");
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date time = null;
-        try{
-            time = dateFormat.parse(dateFormat.format(new Date()));
-        }catch (ParseException e){
-            e.printStackTrace();
+        @Transactional(rollbackFor = {RuntimeException.class, Exception.class})
+        @Override
+        public boolean makeOrder (String user, Order order){
+            order.setUser(user);
+            orderMapper.insertOrder(order);
+            Status status = new Status();
+            status.setOrder_id(order.getId());
+            status.setInfo("已发布");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date time = null;
+            try {
+                time = dateFormat.parse(dateFormat.format(new Date()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            status.setTime(time);
+            statusMapper.insertStatus(status);
+            return true;
         }
-        status.setTime(time);
-        statusMapper.insertStatus(status);
-        return true;
->>>>>>> upstream/master
-    }
 
-    @Override
-    public List<Order> selectOrderByUser(String user) {
-        return orderMapper.selectOrderByUser(user);
-    }
+        @Override
+        public List<Order> selectOrderByUser (String user){
+            return orderMapper.selectOrderByUser(user);
+        }
 
-    @Override
-<<<<<<< HEAD
-    public String getAllOrderList(int page,int limit) {
-        List<Order> orders = orderMapper.getAllOrder((page-1)*limit,limit);
-        int count= orderMapper.getOrderCount();
-        List<OrderTitle> orderTitles=new LinkedList<>();
-        for (Order r:orders){
-            OrderTitle orderTitle = new OrderTitle();
-            orderTitle.setId(r.getId());
-            orderTitle.setUser(r.getUser());
-            orderTitle.setBegin(r.getBegin());
-            orderTitle.setEnd(r.getEnd());
-            orderTitle.setReward(r.getReward());
-            orderTitles.add(orderTitle);
+        @Override
+        public String getAllOrderList ( int page, int limit){
+            List<Order> orders = orderMapper.getAllOrder((page - 1) * limit, limit);
+            int count = orderMapper.getOrderCount();
+            List<OrderTitle> orderTitles = new LinkedList<>();
+            for (Order r : orders) {
+                OrderTitle orderTitle = new OrderTitle();
+                orderTitle.setId(r.getId());
+                orderTitle.setUser(r.getUser());
+                orderTitle.setBegin(r.getBegin());
+                orderTitle.setEnd(r.getEnd());
+                orderTitle.setReward(r.getReward());
+                orderTitles.add(orderTitle);
+            }
         }
 
 =======
-    public List<OrderTitle> getAllOrderList(int page,int limit) {
-        List<OrderTitle> orderTitles = orderMapper.getAllOrder((page-1)*limit,limit);
+            public List<OrderTitle> getAllOrderList ( int page, int limit){
+                List<OrderTitle> orderTitles = orderMapper.getAllOrder((page - 1) * limit, limit);
 
         /*int count= orderMapper.getOrderCount();
 >>>>>>> upstream/master
@@ -143,12 +145,12 @@ public class OrderServiceImpl implements OrderService {
 
 =======
         }*/
-        return orderTitles;
-    }
+                return orderTitles;
+            }
 
-    @Override
-    public List<OrdersUser> getUserOrders(String user,int page, int limit) {
-        List<OrdersUser> ordersUsers = orderMapper.getUserOrders(user,(page-1)*limit,limit);
+            @Override
+            public List<OrdersUser> getUserOrders (String user,int page, int limit){
+                List<OrdersUser> ordersUsers = orderMapper.getUserOrders(user, (page - 1) * limit, limit);
         /*int count= orderMapper.getUserOrderCount(user);
 >>>>>>> upstream/master
 
@@ -174,12 +176,12 @@ public class OrderServiceImpl implements OrderService {
         }
 =======
         }*/
-        return ordersUsers;
-    }
+                return ordersUsers;
+            }
 
-    @Override
-    public OrderInfo getOrderInfo(int id) {
-        OrderInfo orderInfo = orderMapper.getOrderInfo(id);
+            @Override
+            public OrderInfo getOrderInfo ( int id){
+                OrderInfo orderInfo = orderMapper.getOrderInfo(id);
         /*Map<String,Object> result = new HashMap<>();
         result.put("code",0);
         result.put("msg", "订单的详细信息");
@@ -192,32 +194,41 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
             return "";
         }*/
-        return orderInfo;
-    }
+                return orderInfo;
+            }
 
-    @Override
-    public void setDelivery(int id, String delivery) {
-        orderMapper.setDelivery(id,delivery);
-    }
+            @Override
+            public void setDelivery ( int id, String delivery){
+                orderMapper.setDelivery(id, delivery);
+            }
 
-    @Override
-    public Date getOrderEndTime(int id) {
-        return orderMapper.getOrderEndTime(id);
-    }
+            @Override
+            public Date getOrderEndTime ( int id){
+                return orderMapper.getOrderEndTime(id);
+            }
 
-    @Override
-    public List<OrderStatus> getOrderStatus(String username) {
-        return orderMapper.getOrderStatus(username);
-    }
+            @Override
+            public List<OrderStatus> getOrderStatus (String username){
+                return orderMapper.getOrderStatus(username);
+            }
 
-    @Override
-    public int getOrderCount() {
-        return orderMapper.getOrderCount();
-    }
+            @Override
+            public int getOrderCount () {
+                return orderMapper.getOrderCount();
+            }
 
-    @Override
-    public int getUserOrderCount(String user) {
-        return orderMapper.getUserOrderCount(user);
->>>>>>> upstream/master
+            @Override
+            public int getUserOrderCount (String user){
+                return orderMapper.getUserOrderCount(user);
+            }
+>>>>>>>upstream / master
+
+            @Override
+            public PageInfo findAllBytitle (Integer page, Integer limit, String title){
+                PageHelper.startPage(page, limit);
+
+                List<OrderTitle> orderList = orderMapper.selectByTitle(title);
+                PageInfo<OrderTitle> pageInfo = new PageInfo<>(orderList);
+                return pageInfo;
+            }
     }
-}

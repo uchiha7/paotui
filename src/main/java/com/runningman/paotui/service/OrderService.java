@@ -1,6 +1,7 @@
 package com.runningman.paotui.service;
 
 <<<<<<< HEAD
+import com.github.pagehelper.PageInfo;
 import com.runningman.paotui.pojo.Order;
 import com.runningman.paotui.pojo.OrderTitle;
 import org.hibernate.validator.constraints.EAN;
@@ -83,4 +84,6 @@ public interface OrderService {
 
     List<OrderStatus> getOrderStatus(String username);
 >>>>>>> upstream/master
+
+    PageInfo findAllBytitle(Integer page, Integer limit, String title) ;
 }
